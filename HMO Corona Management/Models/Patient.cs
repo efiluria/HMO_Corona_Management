@@ -26,9 +26,8 @@ namespace HMO_Corona_Management.Models
         public int apt { get; set; }
 
         [DisplayName("Date of birth")]
-        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
-        public DateOnly dateOfBirth { get; set; }
+        public DateTime dateOfBirth { get; set; }
 
         [DisplayName("Phone")]
         [DataType(DataType.PhoneNumber)]
@@ -60,7 +59,7 @@ namespace HMO_Corona_Management.Models
                 }
                 else
                 {
-                    vaccinationDetails = value;
+                    _vaccinationDetails = value;
                 }
             }
         }
@@ -83,7 +82,7 @@ namespace HMO_Corona_Management.Models
             apt = 0;
             phone = "";
             mobilePhone = "";
-            dateOfBirth = new DateOnly();
+            dateOfBirth = new DateTime();
             _vaccinationDetails = new List<VaccinationInfo>(3)
             {
                 new VaccinationInfo(),new VaccinationInfo(),new VaccinationInfo(),new VaccinationInfo(),
@@ -101,7 +100,7 @@ namespace HMO_Corona_Management.Models
             apt= patient.apt;
             phone = patient.phone;
             mobilePhone = patient.mobilePhone;
-            dateOfBirth= new DateOnly();
+            dateOfBirth= new DateTime();
             if(patient.vaccinationDetails is not null)
             {
                 for (int i = 0; i < patient.vaccinationDetails.Count(); i++)
