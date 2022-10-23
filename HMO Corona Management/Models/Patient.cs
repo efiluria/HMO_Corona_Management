@@ -6,6 +6,7 @@ namespace HMO_Corona_Management.Models
 {
     public class Patient
     {
+        // Properties
         public string id { get; set; } // firebase unique id
 
         [DisplayName("Full name")]
@@ -37,40 +38,22 @@ namespace HMO_Corona_Management.Models
         [DataType(DataType.PhoneNumber)]
         public string mobilePhone { get; set; }
 
-
         private List<VaccinationInfo>? _vaccinationDetails;
         public List<VaccinationInfo>? vaccinationDetails
         {
 
             get { return _vaccinationDetails; }
 
-            //set { _vaccinationDetails.AddRange(value); }
-
-            set
-            {
-                if (value is not null)
-                {
-                    for (int i = 0; i < value.Count(); i++)
-                    {
-                        _vaccinationDetails[i].vaccinationDate = value[i].vaccinationDate;
-                        _vaccinationDetails[i].vaccinationManufacturer = value[i].vaccinationManufacturer;
-                    }
-
-                }
-                else
-                {
-                    _vaccinationDetails = value;
-                }
-            }
+            set { _vaccinationDetails=value; }
         }
-
-        //Pfizer, Moderna, AZ 
 
         [DisplayName("Positive result date")]
         public DateTime? positiveResultDate { get; set; }
 
         [DisplayName("Recovery date")]
         public DateTime? recoveryDate { get; set; }
+        
+        // Ctors
 
         public Patient()
         {
@@ -83,10 +66,7 @@ namespace HMO_Corona_Management.Models
             phone = "";
             mobilePhone = "";
             dateOfBirth = new DateTime();
-            _vaccinationDetails = new List<VaccinationInfo>(3)
-            {
-                new VaccinationInfo(),new VaccinationInfo(),new VaccinationInfo(),new VaccinationInfo(),
-            };
+            _vaccinationDetails = new List<VaccinationInfo>(3) { };
             positiveResultDate = new DateTime();
             recoveryDate = new DateTime();
         }

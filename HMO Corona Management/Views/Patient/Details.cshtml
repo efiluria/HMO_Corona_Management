@@ -10,6 +10,7 @@
     <h3>Patient Details</h3>
     <hr />
     <dl class="row">
+        
         <ht style="font-weight:900;font-size:large">Personal details:</ht>
 
         <dt class = "col-sm-3">
@@ -63,7 +64,6 @@
 
         <ht style="font-weight:900;font-size:large">Corona virus details:</ht>
 
-
         <dt class = "col-sm-3">
             @Html.DisplayNameFor(model => model.positiveResultDate)
         </dt>
@@ -76,12 +76,13 @@
         <dd class = "col-sm-9">
             @Html.DisplayFor(model => model.recoveryDate)
         </dd>
+        
         <ht style="font-weight:900;font-size:large">Vaccinations details:</ht>
-                       @if (Model.vaccinationDetails is not null)
+
+        @if (Model.vaccinationDetails is not null)
         {
             @for (int i = 0; i < Model.vaccinationDetails.Count(); i++)
-
-            {
+           {
                 <dt class="col-sm-1">
                     @(
                     i + 1
@@ -98,7 +99,6 @@
                     @Html.DisplayFor(model => Model.vaccinationDetails[i].vaccinationManufacturer)
                 </dd>
             }
-
         }
     </dl>
 </div>
