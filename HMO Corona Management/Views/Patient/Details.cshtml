@@ -1,0 +1,108 @@
+﻿@model HMO_Corona_Management.Models.Patient
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <h3>Patient Details</h3>
+    <hr />
+    <dl class="row">
+        <ht style="font-weight:900;font-size:large">Personal details:</ht>
+
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.patientId)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.patientId)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.city)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.street)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.street)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.apt)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.apt)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.mobilePhone)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.mobilePhone)
+        </dd>
+
+        <ht style="font-weight:900;font-size:large">Corona virus details:</ht>
+
+
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.positiveResultDate)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.positiveResultDate)
+        </dd>
+        <dt class = "col-sm-3">
+            @Html.DisplayNameFor(model => model.recoveryDate)
+        </dt>
+        <dd class = "col-sm-9">
+            @Html.DisplayFor(model => model.recoveryDate)
+        </dd>
+        <ht style="font-weight:900;font-size:large">Vaccinations details:</ht>
+                       @if (Model.vaccinationDetails is not null)
+        {
+            @for (int i = 0; i < Model.vaccinationDetails.Count(); i++)
+
+            {
+                <dt class="col-sm-1">
+                    @(
+                    i + 1
+                    ).
+                </dt>
+                <dt class="col-sm-3">
+                    Vaccination date
+                    <br>
+                    Vaccination Manufacturer
+                </dt>
+                <dd class="col-sm-8">
+                    @Html.DisplayFor(model => Model.vaccinationDetails[i].vaccinationDate)
+                    <br>
+                    @Html.DisplayFor(model => Model.vaccinationDetails[i].vaccinationManufacturer)
+                </dd>
+            }
+
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,104 @@
+﻿@model HMO_Corona_Management.Models.Patient
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Patient</h4>
+    <hr />
+    <dl class="row">
+        <ht style="font-weight:900;font-size:large">Personal details:</ht>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fullName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.patientId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.patientId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.city)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.street)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.street)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.apt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.apt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.dateOfBirth)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.dateOfBirth)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.phone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.mobilePhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.mobilePhone)
+        </dd>
+
+        <ht style="font-weight:900;font-size:large">Corona virus details:</ht>
+
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.positiveResultDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.positiveResultDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.recoveryDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.recoveryDate)
+        </dd>
+        <ht style="font-weight:900;font-size:large">Vaccinations details:</ht>
+        @for (int i = 0; i < Model.vaccinationDetails.Count; i++)
+
+        {
+            <dt class="col-sm-1">
+                @(i + 1).
+            </dt>
+            <dt class="col-sm-3">
+                Vaccination date
+                <br>
+                Vaccination Manufacturer
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.vaccinationDetails[i].vaccinationDate)
+                <br>
+                @Html.DisplayFor(model => model.vaccinationDetails[i].vaccinationManufacturer)
+            </dd>
+        }
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

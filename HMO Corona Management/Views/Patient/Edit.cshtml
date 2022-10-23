@@ -1,0 +1,121 @@
+﻿@model HMO_Corona_Management.Models.Patient
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Patient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <h5>Personal details</h5>
+
+            <div class="form-group">
+                <label asp-for="fullName" class="control-label"></label>
+                <input asp-for="fullName" class="form-control" />
+                <span asp-validation-for="fullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="patientId" class="control-label"></label>
+                <input asp-for="patientId" class="form-control" />
+                <span asp-validation-for="patientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="city" class="control-label"></label>
+                <input asp-for="city" class="form-control" />
+                <span asp-validation-for="city" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="street" class="control-label"></label>
+                <input asp-for="street" class="form-control" />
+                <span asp-validation-for="street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apt" class="control-label"></label>
+                <input asp-for="apt" class="form-control" />
+                <span asp-validation-for="apt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dateOfBirth" class="control-label"></label>
+                <input asp-for="dateOfBirth" class="form-control" />
+                <span asp-validation-for="dateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="mobilePhone" class="control-label"></label>
+                <input asp-for="mobilePhone" class="form-control" />
+                <span asp-validation-for="mobilePhone" class="text-danger"></span>
+            </div>
+            <hr class="solid">
+            <h5>Corona virus details </h5>
+            <table id="tbl">
+                @if (Model.vaccinationDetails is not null)
+                {
+                    <tr> <th>Getting vaccinated date</th> <th>Vaccinated manufacturer</th> </tr>
+@*                    <a asp-action="AddVaccination" id="AddVaccination">add vaccination</a>
+                *@
+
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            <td class="editor-field">
+                                @Html.EditorFor(model =>Model.vaccinationDetails[i].vaccinationDate)
+                            </td>
+                            <td class="editor-field">
+                                @Html.EditorFor(model => Model.vaccinationDetails[i].vaccinationManufacturer)
+                                @Html.ValidationMessageFor(model =>Model.vaccinationDetails[i].vaccinationManufacturer)
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+            <div class="form-group">
+                <label asp-for="positiveResultDate" class="control-label"></label>
+                <input asp-for="positiveResultDate" class="form-control" />
+                <span asp-validation-for="positiveResultDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="recoveryDate" class="control-label"></label>
+                <input asp-for="recoveryDate" class="form-control" />
+                <span asp-validation-for="recoveryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+        $(function () {
+        $(function () {
+            $("#AddVaccination").click(function () {
+                $("#tbl").append(
+                    '<tr><td class="editor-field" > <input type="text" class= "txtbox" value = "" /> </td><td class="editor-field" > <input type="text" class= "txtbox" value = "" /> </td></tr>'
+                  );
+            });
+        });
+</script>
+
+
+
+    
+}
