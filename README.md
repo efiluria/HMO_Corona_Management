@@ -9,7 +9,7 @@ On the main page - the list of patients:
 ![image](https://user-images.githubusercontent.com/73187680/197701165-07b74a5a-0a10-4f12-97b8-146e7160a5d1.png)
 
 By clicking on "Create new patient":
-![image](https://user-images.githubusercontent.com/73187680/197701536-6c9ab481-6683-49a2-9384-02aa83900153.png)
+![image](https://user-images.githubusercontent.com/73187680/197702581-24a61a2f-e7c9-4d82-87a3-3883d7196fd7.png)
 
 By clicking on "Details" displays the patient details:
 ![image](https://user-images.githubusercontent.com/73187680/197701864-33faea3c-481d-444f-9fdd-db1201774652.png)
