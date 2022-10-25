@@ -58,22 +58,23 @@
             <hr class="solid">
             <h5>Corona virus details </h5>
             <table id="tbl">
-                @if (Model.vaccinationDetails is not null)
-                {
                     <tr> <th>Getting vaccinated date</th> <th>Vaccinated manufacturer</th> </tr>
-                    @for (int i = 0; i < Model.vaccinationDetails.Count(); i++)
+                    @for (int i = 0; i < 4; i++)
                     {
+                        @if (i < Model.vaccinationDetails.Count()){
+                            Model.vaccinationDetails.Add(new VaccinationInfo());
+
+                        }
                         <tr>
-                            <td class="editor-field">
-                                @Html.EditorFor(model =>Model.vaccinationDetails[i].vaccinationDate)
-                            </td>
-                            <td class="editor-field">
-                                @Html.EditorFor(model => Model.vaccinationDetails[i].vaccinationManufacturer)
-                                @Html.ValidationMessageFor(model =>Model.vaccinationDetails[i].vaccinationManufacturer)
-                            </td>
+                        <td class="editor-field">
+                                @Html.EditorFor(model => model.vaccinationDetails[i].vaccinationDate)
+                        </td>
+                        <td class="editor-field">
+                            @Html.EditorFor(model => model.vaccinationDetails[i].vaccinationManufacturer)
+                        </td>
                         </tr>
-                    }
-                }
+                     }
+
             </table>
 
             <div class="form-group">

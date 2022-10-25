@@ -2,18 +2,15 @@
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using HMO_Corona_Management.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
-
-using Microsoft.AspNetCore.Http;
 
 namespace HMO_Corona_Management.Controllers
 {
     public class PatientController : Controller
     {
+        // Firebase authentication details
         IFirebaseConfig config = new FirebaseConfig
         {
             AuthSecret = "sFCsM0BpjSSi2kzKBwvNMuF40Xg4oJ1nSCsUOLHN",
@@ -47,7 +44,7 @@ namespace HMO_Corona_Management.Controllers
             FirebaseResponse response = client.Get("Patients/" + id);
             Patient data = new Patient();
             data = JsonConvert.DeserializeObject<Patient>(response.Body);
-            return View(JsonConvert.DeserializeObject<Patient>(response.Body));
+            return View(data);
         }
 
         // GET: PatientController/Create
@@ -67,7 +64,8 @@ namespace HMO_Corona_Management.Controllers
                 var data = patient;
                 PushResponse response = client.Push("Patients/", data);
                 data.id = response.Result.name;
-                // set the id of the patient to be the name of the response
+                
+                // set the id of the patient to be the name of the response name from firebase
                 SetResponse setResponse = client.Set("Patients/" + data.id, data);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -100,6 +98,21 @@ namespace HMO_Corona_Management.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Patient patient)
         {
+            if(patient.vaccinationDetails is not null)
+            {
+                for (int i = 0; i < patient.vaccinationDetails.Count(); i++)
+                {
+                    // if vaccinationDetails[i] still contains default values delete it from the list
+                    if (patient.vaccinationDetails[i].vaccinationDate == DateTime.MinValue && patient.vaccinationDetails[i].vaccinationManufacturer == null)
+                    {
+
+                        patient.vaccinationDetails.Remove(patient.vaccinationDetails[i]);
+
+                    }
+                }
+
+            }
+
             client = new FireSharp.FirebaseClient(config);
             SetResponse response = client.Set("Patients/" + patient.id, patient);
             return RedirectToAction("Index");
