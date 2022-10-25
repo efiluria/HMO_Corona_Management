@@ -15,4 +15,4 @@ By clicking on "Details" displays the patient details:
 ![image](https://user-images.githubusercontent.com/73187680/197701864-33faea3c-481d-444f-9fdd-db1201774652.png)
 
 By clicking on "Edit" enables changes on patient details:
-![image](https://user-images.githubusercontent.com/73187680/197702052-1985d209-db3c-4fad-84d2-0dcdcc58c3c8.png)
+![image](https://user-images.githubusercontent.com/73187680/197702769-e9bae805-2f4d-4b62-8881-481fff1cf90a.png)
